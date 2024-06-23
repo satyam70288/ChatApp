@@ -25,8 +25,12 @@ const AppLayout =()=> (WrappedCompnonent) => {
         }
         onlineUsers={["1","2"]}/>
       </Grid>
-      <Grid itme xs={12} sm={8} md={5} lg={6}  height={"100%"}  bgcolor={"primary.main"}>      <WrappedCompnonent {...props}/>
-      </Grid>
+      <Grid item xs={12} sm={8} md={5} lg={6} height={"100%"}>
+            <WrappedCompnonent {...props}
+            //  chatId={chatId}
+              // user={user} 
+              />
+          </Grid>
       <Grid item md={4} lg={3} sx={{
             display: { xs: "none", md: "block" },
             padding: "2rem",
@@ -36,7 +40,7 @@ const AppLayout =()=> (WrappedCompnonent) => {
             <Profile/>
           </Grid>
       </Grid>
-      <div> FOOTER</div>
+      
     </>
   )
 }
