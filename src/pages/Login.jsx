@@ -8,6 +8,7 @@ import { VisuallyHiddenInput } from '../components/styles/styledComponent';
 const Login = () => {
     const [isLogin, setIsLogin] = useState(true);
     const [avatarImage, setAvatarImage] = useState(null); // State to hold selected avatar image
+    const [imageName, setImageName] = useState(''); // State to store the image name
 
     const name = useInputValidation("");
     const bio = useInputValidation("");
@@ -18,7 +19,9 @@ const Login = () => {
     const handleAvatarChange = (event) => {
         const file = event.target.files[0];
         if (file) {
+            setImageName(file.name); // Set the selected file's name in state
             const reader = new FileReader();
+            console.log(reader)
             reader.onloadend = () => {
                 setAvatarImage(reader.result);
             };
@@ -133,6 +136,7 @@ const Login = () => {
                                         width={"10rem"}
                                         margin={"auto"}
                                     >
+                                        
                                         <Avatar
                                             src={avatarImage} // Set Avatar src to display selected image
                                             sx={{
@@ -143,8 +147,6 @@ const Login = () => {
                                         />
                                         <IconButton
                                             sx={{
-                                               // width:1,
-                                                // borderRadius:50,
                                                 position: "absolute",
                                                 bottom: '0',
                                                 right: "0",
@@ -155,29 +157,15 @@ const Login = () => {
                                                 }
                                             }}
                                             component="label"
+                                            
                                         >
+                                            
                                             <>
                                                 <CameraAltIcon />
+                                                <VisuallyHiddenInput type="file" onChange={handleAvatarChange} />
 
-                                                <VisuallyHiddenInput type="file" onChange={handleAvatarChange}/>
-                                                {/* <input
-                                                style={{ 
-                                                    // display:"hidden",
-                                                    //  border: 0,
-                                                    // clip: 'rect(0 0 0 0)',
-                                                    // height: 2,
-                                                    // margin: -1,
-                                                    // overflow: 'hidden',
-                                                    // padding: 0,
-                                                    // position: 'absolute',
-                                                    // whiteSpace: 'nowrap',
-                                                    // width: 1
-                                            }}
-                                                    type="file"
-                                                    // className={visuallyHiddenInput}
-                                                    onChange={handleAvatarChange} // Handle file selection
-                                                /> */}
                                             </>
+                                            
                                         </IconButton>
                                     </Stack>
                                     <TextField
